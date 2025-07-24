@@ -69,8 +69,8 @@ linear_regression_model/
 ### Installation Steps
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/nigerian-graduate-salary-prediction.git
-   cd nigerian-graduate-salary-prediction/linear_regression_model/summative/FlutterApp/graduate_salary_predictor
+   git clone https://github.com/Uwingabir/nigerian-graduate-salary-predicto.git
+   cd nigerian-graduate-salary-predicto/summative/FlutterApp/graduate_salary_predictor
    ```
 
 2. **Install dependencies:**

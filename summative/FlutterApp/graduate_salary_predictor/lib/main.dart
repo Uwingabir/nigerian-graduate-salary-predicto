@@ -234,8 +234,8 @@ class _PredictionScreenState extends State<PredictionScreen> {
     });
 
     try {
-      // Using local API for testing
-      const String apiUrl = 'http://localhost:8000/predict';
+      // Using deployed API on Render
+      const String apiUrl = 'https://nigerian-graduate-salary-api.onrender.com/predict';
       
       final response = await http.post(
         Uri.parse(apiUrl),

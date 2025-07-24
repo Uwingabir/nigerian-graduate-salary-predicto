@@ -2,7 +2,13 @@ services:
   - type: web
     name: nigerian-graduate-salary-api
     env: python
-    rootDir: summative/API
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    region: oregon
     plan: free
+    rootDir: summative/API
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0

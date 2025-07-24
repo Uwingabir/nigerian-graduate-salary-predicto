@@ -8,11 +8,9 @@
 **Solution:** An AI-powered prediction system that estimates graduate salary and employment probability, helping young Africans make informed education and career choices while identifying factors that improve employment outcomes.
 
 ## API Endpoint
-🔗 **Live API URL:** `https://your-deployed-api-url.onrender.com`
-- **Swagger UI:** `https://your-deployed-api-url.onrender.com/docs`
-- **Prediction Endpoint:** `POST https://your-deployed-api-url.onrender.com/predict`
-
-*Note: Replace with actual URL after deployment to Render*
+🔗 **Live API URL:** `https://nigerian-graduate-salary-api.onrender.com`
+- **Swagger UI:** `https://nigerian-graduate-salary-api.onrender.com/docs`
+- **Prediction Endpoint:** `POST https://nigerian-graduate-salary-api.onrender.com/predict`
 
 ## Project Structure
 ```
@@ -108,7 +106,7 @@ The APK will be in `build/app/outputs/flutter-apk/app-release.apk`
 
 ### Request
 ```bash
-curl -X POST "https://your-api-url.onrender.com/predict" \
+curl -X POST "https://nigerian-graduate-salary-api.onrender.com/predict" \
      -H "Content-Type: application/json" \
      -d '{
        "age": 25,

@@ -24,13 +24,28 @@ app.add_middleware(
 
 # Load models and preprocessing objects on startup
 try:
+    print("Loading models...")
+    print(f"Current working directory: {os.getcwd()}")
+    print(f"Files in current directory: {os.listdir('.')}")
+    
     model = joblib.load("best_model.pkl")
+    print(f"Model loaded successfully: {type(model)}")
+    print(f"Model attributes: {[attr for attr in dir(model) if not attr.startswith('_')]}")
+    
     scaler = joblib.load("scaler.pkl")
+    print(f"Scaler loaded successfully: {type(scaler)}")
+    
     label_encoders = joblib.load("label_encoders.pkl")
+    print(f"Label encoders loaded successfully: {len(label_encoders)} encoders")
+    
     feature_names = joblib.load("feature_names.pkl")
+    print(f"Feature names loaded successfully: {feature_names}")
+    
     print("Models and preprocessing objects loaded successfully!")
 except Exception as e:
     print(f"Error loading models: {e}")
+    import traceback
+    traceback.print_exc()
     model = scaler = label_encoders = feature_names = None
 
 class GraduateInput(BaseModel):

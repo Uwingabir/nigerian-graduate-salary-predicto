@@ -1,8 +1,8 @@
 services:
   - type: web
-    name: nigerian-graduate-salary-predictor-2
+    name: nigerian-graduate-salary-predictor-3
     env: python
     plan: free
-    buildCommand: cd summative/API && pip install --no-cache-dir --upgrade pip setuptools wheel && pip install --no-cache-dir -r requirements.txt
+    buildCommand: cd summative/API && rm -f *.pkl && pip install --no-cache-dir --upgrade pip setuptools wheel && pip install --no-cache-dir -r requirements.txt && python3 -c "import joblib; print('Joblib version:', joblib.__version__)"
     startCommand: cd summative/API && uvicorn main:app --host 0.0.0.0 --port $PORT
     pythonVersion: "3.9"

@@ -7,7 +7,7 @@ import requests
 import json
 
 # Replace this with your actual Render URL after deployment
-RENDER_URL = "https://nigerian-graduate-salary-api.onrender.com"  # Update this!
+RENDER_URL = "https://nigerian-graduate-salary-predictor-2.onrender.com"  # Updated URL!
 
 def test_render_api():
     """Test all API endpoints on Render"""

@@ -8,7 +8,7 @@ from typing import Union
 app = FastAPI(
     title="Nigerian Graduate Salary Prediction API",
     description="Predict graduate salaries based on education, demographics, and socioeconomic factors",
-    version="1.0.0"
+    version="2.0.0"  # Updated version to force refresh
 )
 
 # Add CORS middleware
@@ -56,8 +56,8 @@ async def root():
 async def health_check():
     return {
         "status": "healthy",
-        "model_status": "loaded",
-        "api_version": "1.0.0"
+        "model_status": "rule-based predictor active",
+        "api_version": "2.0.0"
     }
 
 @app.post("/predict", response_model=PredictionResponse)

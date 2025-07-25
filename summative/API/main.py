@@ -110,10 +110,19 @@ async def predict_salary(graduate_data: GraduateInput):
                 except ValueError as e:
                     raise HTTPException(status_code=400, detail=f"Invalid value for {col}: {input_data[col].iloc[0]}")
         
-        # Make prediction
-        # Assuming the best model requires scaling (adjust based on your actual best model)
-        input_scaled = scaler.transform(input_data)
-        prediction = model.predict(input_scaled)[0]
+        # Make prediction - handle both scaled and non-scaled models
+        try:
+            # Try scaled prediction first (for Linear Regression)
+            input_scaled = scaler.transform(input_data)
+            prediction = model.predict(input_scaled)[0]
+        except Exception as e:
+            # Fallback to non-scaled prediction (for tree models)
+            print(f"Scaled prediction failed: {e}, trying non-scaled...")
+            prediction = model.predict(input_data)[0]
+        
+        # If prediction is in log scale, convert back to actual salary
+        if prediction < 20:  # Likely log scale (ln(salary) is typically 10-13)
+            prediction = np.exp(prediction)
         
         # Ensure non-negative salary
         prediction = max(0, prediction)

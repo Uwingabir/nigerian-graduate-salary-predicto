@@ -241,10 +241,10 @@ class _PredictionScreenState extends State<PredictionScreen> {
     });
 
     try {
-      // For local testing - update this URL with your deployed API
-      // const String apiUrl = 'https://nigerian-graduate-salary-api.onrender.com/predict';
-      const String apiUrl =
-          'http://10.0.2.2:8000/predict'; // Android emulator localhost
+      // Use deployed API URL for web and production
+      const String apiUrl = 'https://nigerian-graduate-salary-predicto-3.onrender.com/predict';
+      // For local testing, uncomment below:
+      // const String apiUrl = 'http://10.0.2.2:8000/predict'; // Android emulator localhost
       // For iOS simulator, use: 'http://localhost:8000/predict'
       // For physical device, use your computer's IP: 'http://192.168.1.XXX:8000/predict'
 

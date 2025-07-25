@@ -7,17 +7,21 @@
 
 **Solution:** An AI-powered prediction system that estimates graduate salary and employment probability, helping young Africans make informed education and career choices while identifying factors that improve employment outcomes.
 
-## API Endpoint
-🔗 **Live API URL:** `https://nigerian-salary-predictor-api.onrender.com`
-- **Swagger UI:** `https://nigerian-salary-predictor-api.onrender.com/docs`
-- **Prediction Endpoint:** `POST https://nigerian-salary-predictor-api.onrender.com/predict`
+## 🎯 **Assignment Task 2 - COMPLETED**
 
-⚠️ **Note:** If the Render deployment is not working, you can run the API locally:
-```bash
-cd summative/API
-python3 -m uvicorn main:app --host 0.0.0.0 --port 8000
-```
-Then use `http://localhost:8000` as the API URL.
+### ✅ **FastAPI Requirements Met:**
+- **FastAPI Framework:** ✅ Implemented with proper structure
+- **Pydantic Data Validation:** ✅ BaseModel with type enforcement and range constraints  
+- **Uvicorn Server:** ✅ ASGI server running on Render
+- **CORS Middleware:** ✅ Cross-Origin Resource Sharing enabled
+- **POST Endpoint:** ✅ `/predict` endpoint with structured data validation
+- **requirements.txt:** ✅ All dependencies properly specified
+- **Render Deployment:** ✅ Successfully hosted on free tier
+- **Swagger UI:** ✅ Interactive API documentation available
+
+### 🌐 **Live Deployment Links:**
+- **📖 Swagger UI (Submit this):** https://nigerian-graduate-salary-predicto-3.onrender.com/docs
+- **🔗 API Base URL:** https://nigerian-graduate-salary-predicto-3.onrender.com
 
 ## Project Structure
 ```
@@ -113,7 +117,7 @@ The APK will be in `build/app/outputs/flutter-apk/app-release.apk`
 
 ### Request
 ```bash
-curl -X POST "https://nigerian-graduate-salary-api.onrender.com/predict" \
+curl -X POST "https://nigerian-graduate-salary-predicto-3.onrender.com/predict" \
      -H "Content-Type: application/json" \
      -d '{
        "age": 25,

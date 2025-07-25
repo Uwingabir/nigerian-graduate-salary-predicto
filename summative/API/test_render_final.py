@@ -7,7 +7,7 @@ import requests
 import json
 
 # Replace this with your actual Render URL after deployment
-RENDER_URL = "https://nigerian-graduate-salary-predictor-2.onrender.com"  # Updated URL!
+RENDER_URL = "https://nigerian-graduate-salary-predicto-3.onrender.com"  # Updated URL!
 
 def test_render_api():
     """Test all API endpoints on Render"""
@@ -46,12 +46,12 @@ def test_render_api():
         "age": 25,
         "gender": "Female",
         "state_of_origin": "Lagos",
-        "region": "South West",
+        "region": "South",
         "urban_or_rural": "Urban",
         "household_income_bracket": "Middle",
         "field_of_study": "Engineering",
-        "university_type": "Public",
-        "gpa_or_class_of_degree": "Second Upper",
+        "university_type": "Federal",
+        "gpa_or_class_of_degree": "Second Class Upper",
         "has_postgrad_degree": "No",
         "years_since_graduation": 2
     }

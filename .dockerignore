@@ -1,0 +1,11 @@
+# Ignore these files/folders when Docker is used
+Dockerfile.backup
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.git
+.gitignore
+README.md
+test_*.py

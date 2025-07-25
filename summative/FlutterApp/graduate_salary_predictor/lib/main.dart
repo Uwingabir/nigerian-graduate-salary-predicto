@@ -36,11 +36,7 @@ class SplashScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.school,
-                size: 100,
-                color: Colors.green.shade700,
-              ),
+              Icon(Icons.school, size: 100, color: Colors.green.shade700),
               const SizedBox(height: 30),
               Text(
                 'Nigerian Graduate',
@@ -63,10 +59,7 @@ class SplashScreen extends StatelessWidget {
               const SizedBox(height: 20),
               Text(
                 'Predict your earning potential based on education, demographics, and career factors',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.green.shade600,
-                ),
+                style: TextStyle(fontSize: 16, color: Colors.green.shade600),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 50),
@@ -82,7 +75,10 @@ class SplashScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green.shade700,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 40,
+                    vertical: 15,
+                  ),
                 ),
                 child: const Text(
                   'Start Prediction',
@@ -102,7 +98,10 @@ class SplashScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey.shade600,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 40,
+                    vertical: 15,
+                  ),
                 ),
                 child: const Text(
                   'About the App',
@@ -190,11 +189,11 @@ class PredictionScreen extends StatefulWidget {
 
 class _PredictionScreenState extends State<PredictionScreen> {
   final _formKey = GlobalKey<FormState>();
-  
+
   // Controllers for text fields
   final _ageController = TextEditingController();
   final _yearsController = TextEditingController();
-  
+
   // Dropdown values
   String? _gender;
   String? _region;
@@ -204,22 +203,30 @@ class _PredictionScreenState extends State<PredictionScreen> {
   String? _universityType;
   String? _gpaClass;
   String? _hasPostgrad;
-  
+
   // Result variables
   String _result = '';
   bool _isLoading = false;
-  
+
   // Dropdown options
   final List<String> _genderOptions = ['Male', 'Female'];
   final List<String> _regionOptions = ['North', 'South', 'East'];
   final List<String> _urbanRuralOptions = ['Urban', 'Rural'];
   final List<String> _incomeLevelOptions = ['Low', 'Middle', 'High'];
   final List<String> _fieldOfStudyOptions = [
-    'Engineering', 'Business', 'Health Sciences', 'Education', 'Arts', 'Science'
+    'Engineering',
+    'Business',
+    'Health Sciences',
+    'Education',
+    'Arts',
+    'Science',
   ];
   final List<String> _universityTypeOptions = ['Federal', 'State', 'Private'];
   final List<String> _gpaClassOptions = [
-    'First Class', 'Second Class Upper', 'Second Class Lower', 'Third Class'
+    'First Class',
+    'Second Class Upper',
+    'Second Class Lower',
+    'Third Class',
   ];
   final List<String> _hasPostgradOptions = ['Yes', 'No'];
 
@@ -236,15 +243,14 @@ class _PredictionScreenState extends State<PredictionScreen> {
     try {
       // For local testing - update this URL with your deployed API
       // const String apiUrl = 'https://nigerian-graduate-salary-api.onrender.com/predict';
-      const String apiUrl = 'http://10.0.2.2:8000/predict'; // Android emulator localhost
+      const String apiUrl =
+          'http://10.0.2.2:8000/predict'; // Android emulator localhost
       // For iOS simulator, use: 'http://localhost:8000/predict'
       // For physical device, use your computer's IP: 'http://192.168.1.XXX:8000/predict'
-      
+
       final response = await http.post(
         Uri.parse(apiUrl),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'age': int.parse(_ageController.text),
           'gender': _gender,
@@ -262,8 +268,9 @@ class _PredictionScreenState extends State<PredictionScreen> {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         setState(() {
-          _result = 'Predicted Salary: ${data['formatted_salary']}\n\n'
-                  'Confidence: ${data['model_confidence']}';
+          _result =
+              'Predicted Salary: ${data['formatted_salary']}\n\n'
+              'Confidence: ${data['model_confidence']}';
         });
       } else {
         setState(() {
@@ -272,9 +279,10 @@ class _PredictionScreenState extends State<PredictionScreen> {
       }
     } catch (e) {
       setState(() {
-        _result = 'Error: Could not connect to the prediction service.\n'
-                'Please check your internet connection or try again later.\n\n'
-                'Error details: $e';
+        _result =
+            'Error: Could not connect to the prediction service.\n'
+            'Please check your internet connection or try again later.\n\n'
+            'Error details: $e';
       });
     } finally {
       setState(() {
@@ -283,8 +291,12 @@ class _PredictionScreenState extends State<PredictionScreen> {
     }
   }
 
-  Widget _buildDropdown(String label, String? value, List<String> options, 
-                       Function(String?) onChanged) {
+  Widget _buildDropdown(
+    String label,
+    String? value,
+    List<String> options,
+    Function(String?) onChanged,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: DropdownButtonFormField<String>(
@@ -294,10 +306,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
         ),
         value: value,
         items: options.map((String option) {
-          return DropdownMenuItem<String>(
-            value: option,
-            child: Text(option),
-          );
+          return DropdownMenuItem<String>(value: option, child: Text(option));
         }).toList(),
         onChanged: onChanged,
         validator: (value) {
@@ -310,8 +319,11 @@ class _PredictionScreenState extends State<PredictionScreen> {
     );
   }
 
-  Widget _buildTextField(String label, TextEditingController controller, 
-                        String? Function(String?)? validator) {
+  Widget _buildTextField(
+    String label,
+    TextEditingController controller,
+    String? Function(String?)? validator,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
@@ -351,70 +363,96 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20),
-              
-              _buildTextField(
-                'Age (20-50)',
-                _ageController,
-                (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your age';
-                  }
-                  final age = int.tryParse(value);
-                  if (age == null || age < 20 || age > 50) {
-                    return 'Age must be between 20 and 50';
-                  }
-                  return null;
-                },
-              ),
-              
+
+              _buildTextField('Age (20-50)', _ageController, (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your age';
+                }
+                final age = int.tryParse(value);
+                if (age == null || age < 20 || age > 50) {
+                  return 'Age must be between 20 and 50';
+                }
+                return null;
+              }),
+
               _buildDropdown('Gender', _gender, _genderOptions, (value) {
                 setState(() {
                   _gender = value;
                 });
               }),
-              
+
               _buildDropdown('Region', _region, _regionOptions, (value) {
                 setState(() {
                   _region = value;
                 });
               }),
-              
-              _buildDropdown('Urban or Rural', _urbanRural, _urbanRuralOptions, (value) {
-                setState(() {
-                  _urbanRural = value;
-                });
-              }),
-              
-              _buildDropdown('Household Income Level', _incomeLevel, _incomeLevelOptions, (value) {
-                setState(() {
-                  _incomeLevel = value;
-                });
-              }),
-              
-              _buildDropdown('Field of Study', _fieldOfStudy, _fieldOfStudyOptions, (value) {
-                setState(() {
-                  _fieldOfStudy = value;
-                });
-              }),
-              
-              _buildDropdown('University Type', _universityType, _universityTypeOptions, (value) {
-                setState(() {
-                  _universityType = value;
-                });
-              }),
-              
-              _buildDropdown('GPA/Class of Degree', _gpaClass, _gpaClassOptions, (value) {
-                setState(() {
-                  _gpaClass = value;
-                });
-              }),
-              
-              _buildDropdown('Has Postgraduate Degree', _hasPostgrad, _hasPostgradOptions, (value) {
-                setState(() {
-                  _hasPostgrad = value;
-                });
-              }),
-              
+
+              _buildDropdown(
+                'Urban or Rural',
+                _urbanRural,
+                _urbanRuralOptions,
+                (value) {
+                  setState(() {
+                    _urbanRural = value;
+                  });
+                },
+              ),
+
+              _buildDropdown(
+                'Household Income Level',
+                _incomeLevel,
+                _incomeLevelOptions,
+                (value) {
+                  setState(() {
+                    _incomeLevel = value;
+                  });
+                },
+              ),
+
+              _buildDropdown(
+                'Field of Study',
+                _fieldOfStudy,
+                _fieldOfStudyOptions,
+                (value) {
+                  setState(() {
+                    _fieldOfStudy = value;
+                  });
+                },
+              ),
+
+              _buildDropdown(
+                'University Type',
+                _universityType,
+                _universityTypeOptions,
+                (value) {
+                  setState(() {
+                    _universityType = value;
+                  });
+                },
+              ),
+
+              _buildDropdown(
+                'GPA/Class of Degree',
+                _gpaClass,
+                _gpaClassOptions,
+                (value) {
+                  setState(() {
+                    _gpaClass = value;
+                  });
+                },
+              ),
+
+              _buildDropdown(
+                'Has Postgraduate Degree',
+                _hasPostgrad,
+                _hasPostgradOptions,
+                (value) {
+                  setState(() {
+                    _hasPostgrad = value;
+                  });
+                },
+              ),
+
               _buildTextField(
                 'Years Since Graduation (0-20)',
                 _yearsController,
@@ -429,9 +467,9 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   return null;
                 },
               ),
-              
+
               const SizedBox(height: 30),
-              
+
               ElevatedButton(
                 onPressed: _isLoading ? null : _makePrediction,
                 style: ElevatedButton.styleFrom(
@@ -439,16 +477,13 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
-                child: _isLoading 
-                  ? const CircularProgressIndicator(color: Colors.white)
-                  : const Text(
-                      'Predict',
-                      style: TextStyle(fontSize: 18),
-                    ),
+                child: _isLoading
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : const Text('Predict', style: TextStyle(fontSize: 18)),
               ),
-              
+
               const SizedBox(height: 20),
-              
+
               if (_result.isNotEmpty)
                 Container(
                   padding: const EdgeInsets.all(16),
@@ -469,10 +504,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        _result,
-                        style: const TextStyle(fontSize: 16),
-                      ),
+                      Text(_result, style: const TextStyle(fontSize: 16)),
                     ],
                   ),
                 ),

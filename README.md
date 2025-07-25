@@ -8,9 +8,16 @@
 **Solution:** An AI-powered prediction system that estimates graduate salary and employment probability, helping young Africans make informed education and career choices while identifying factors that improve employment outcomes.
 
 ## API Endpoint
-🔗 **Live API URL:** `https://nigerian-graduate-salary-api.onrender.com`
-- **Swagger UI:** `https://nigerian-graduate-salary-api.onrender.com/docs`
-- **Prediction Endpoint:** `POST https://nigerian-graduate-salary-api.onrender.com/predict`
+🔗 **Live API URL:** `https://nigerian-salary-predictor-api.onrender.com`
+- **Swagger UI:** `https://nigerian-salary-predictor-api.onrender.com/docs`
+- **Prediction Endpoint:** `POST https://nigerian-salary-predictor-api.onrender.com/predict`
+
+⚠️ **Note:** If the Render deployment is not working, you can run the API locally:
+```bash
+cd summative/API
+python3 -m uvicorn main:app --host 0.0.0.0 --port 8000
+```
+Then use `http://localhost:8000` as the API URL.
 
 ## Project Structure
 ```

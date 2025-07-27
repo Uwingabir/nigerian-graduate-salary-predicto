@@ -54,10 +54,15 @@ async def root():
 
 @app.get("/health")
 async def health_check():
+    import os
+    pkl_files = [f for f in os.listdir('.') if f.endswith('.pkl')]
     return {
         "status": "healthy",
         "model_status": "rule-based predictor active",
-        "api_version": "2.0.0"
+        "api_version": "2.0.0",
+        "pkl_files_found": pkl_files,
+        "working_directory": os.getcwd(),
+        "python_path": os.environ.get('PYTHONPATH', 'Not set')
     }
 
 @app.post("/predict", response_model=PredictionResponse)
@@ -65,6 +70,7 @@ async def predict_salary(graduate_data: GraduateInput):
     """
     Predict graduate salary based on input features using a simplified rule-based model
     """
+    print("🔄 Prediction request received - Using rule-based model (no ML files)")
     try:
         # Convert input to dictionary
         input_dict = graduate_data.dict()

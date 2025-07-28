@@ -241,16 +241,18 @@ class _PredictionScreenState extends State<PredictionScreen> {
     });
 
     try {
-      // Use local API for testing (fixed version)
-      const String apiUrl = 'http://10.0.2.2:8000/predict'; // Android emulator localhost
-      // For deployed API (has a bug currently):
-      // const String apiUrl = 'https://nigerian-graduate-salary-predicto-3.onrender.com/predict';
-      // For iOS simulator, use: 'http://localhost:8000/predict'
-      // For physical device, use your computer's IP: 'http://192.168.1.XXX:8000/predict'
+      // Use deployed API for demo
+      const String apiUrl = 'https://nigerian-graduate-salary-predicto-3.onrender.com/predict';
+      // For local testing: 'http://10.0.2.2:8000/predict' (Android emulator)
+      // For iOS simulator: 'http://localhost:8000/predict'
+      // For physical device: 'http://192.168.1.XXX:8000/predict'
 
       final response = await http.post(
         Uri.parse(apiUrl),
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
         body: jsonEncode({
           'age': int.parse(_ageController.text),
           'gender': _gender,
@@ -263,7 +265,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
           'has_postgrad_degree': _hasPostgrad,
           'years_since_graduation': int.parse(_yearsController.text),
         }),
-      );
+      ).timeout(Duration(seconds: 30));
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);

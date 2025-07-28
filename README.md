@@ -17,7 +17,7 @@ Public API Endpoint
 **API URL:** https://nigerian-graduate-salary-predicto-3.onrender.com/predict
 
 ## YouTube Video Demo
-**Demo Link:** [Nigerian Graduate Salary Prediction Demo (5 minutes)](https://youtube.com/watch?v=your-video-id)
+**Demo Link:**https://youtu.be/7KLL_GemKOs
 
 How to Run the Mobile App
 
